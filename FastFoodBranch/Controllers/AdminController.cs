@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System.Data.Entity.Core.Objects;
 using static System.Net.Mime.MediaTypeNames;
 using System.Data;
+using FastFoodBranch.Entities;
 
 namespace FastFoodBranch.Controllers
 {
@@ -2910,7 +2911,7 @@ namespace FastFoodBranch.Controllers
             {
                 return Json(new { success = true, data = result, vouCher = 0, checkTT = mavoucher.TrangThai }, JsonRequestBehavior.AllowGet);
             }
-            return Json(new { success = false, message = "Khong co du lieu tim thay" }, JsonRequestBehavior.AllowGet);
+            //return Json(new { success = false, message = "Khong co du lieu tim thay" }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult DSBH()
@@ -2921,39 +2922,13 @@ namespace FastFoodBranch.Controllers
         [HttpPost]
         public JsonResult getDoanhThu(int year, string branch)
         {
-            if(branch != "all")
-            {
-                var dsHoaDon = db.HoaDons.Where(hd => hd.NgayTao.Value.Year == year && hd.LocationID == branch && hd.TrangThai == true).ToList();
-                List<HoaDon> result = dsHoaDon.Select(ma => new HoaDon
-                {
-                    ID = ma.ID,
-                    NgayTao = ma.NgayTao,
-                    LocationID = ma.LocationID,
-                    TongCong = ma.TongCong,
-                    IDVoucher = ma.IDVoucher,
-                    MaNVLap = ma.MaNVLap,
-                    MaKH = ma.MaKH,
-                    TrangThai = ma.TrangThai
-                }).ToList();
+            AllBranch allBranch = new AllBranch();
+            
+            allBranch.AutoAddBranch(db.ChiNhanhs.ToList());
 
-                return Json(new { success = true, data = result }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                var dsHoaDon = db.HoaDons.Where(hd => hd.NgayTao.Value.Year == year && hd.TrangThai == true).ToList();
-                List<HoaDon> result = dsHoaDon.Select(ma => new HoaDon
-                {
-                    ID = ma.ID,
-                    NgayTao = ma.NgayTao,
-                    LocationID = ma.LocationID,
-                    TongCong = ma.TongCong,
-                    IDVoucher = ma.IDVoucher,
-                    MaNVLap = ma.MaNVLap,
-                    MaKH = ma.MaKH,
-                    TrangThai = ma.TrangThai
-                }).ToList();
-                return Json(new { success = true, data = result }, JsonRequestBehavior.AllowGet);
-            }
+
+            var result = allBranch.getListIncome(year,branch);
+            return Json(new { success = true, data = result }, JsonRequestBehavior.AllowGet);
 
         }
     }
