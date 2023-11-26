@@ -1,0 +1,248 @@
+﻿@model FastFoodBranch.Models.MonAn
+@using FastFoodBranch.Models
+@{
+    ViewBag.Title = "Thông tin sản phẩm";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    ViewBag.setUp1 = "sub_page";
+    ViewBag.setUp2 = "Hidden";
+    var userKH = (KhachHang)Session["userKH"];
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<style>
+    .qty {
+        display: block;
+        zoom: 1;
+        margin-bottom: 20px;
+    }
+
+        .qty .lbl {
+            font-family: 'Dancing Script', cursive;
+            float: left;
+            display: block;
+            margin-right: 20px;
+            padding-top: 10px;
+        }
+
+        .qty button {
+            width: 44px;
+            height: 44px;
+            border: none;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            text-align: center;
+            color: #fff;
+            background-color: #FF969A;
+            float: left;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .qty .number {
+            background-color: #FFEAE3;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            width: 44px;
+            height: 44px;
+            text-align: center;
+            border: none;
+            float: left;
+            margin: 0 5px;
+            font-size: 16px;
+            padding: 10px 0 0;
+            display: block;
+        }
+
+    .txt-note {
+        float: left;
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+
+    .btnAddCart {
+        display: block;
+        float: left;
+        font-weight: 700;
+    }
+
+        .btnAddCart .btn-cart {
+            background-color: #ff5b6a;
+            padding: 10px 35px;
+            font-weight: 700;
+        }
+
+            .btnAddCart .btn-cart:hover {
+                background-color: #ff5b6a;
+                border-color: #ff5b6a;
+            }
+
+    .btnAddDSYT {
+        display: block;
+        float: left;
+        font-weight: 700;
+        margin-left: 5px;
+    }
+
+        .btnAddDSYT .btn-dsyt {
+            background-color: #ff5b6a;
+            padding: 10px 35px;
+            font-weight: 700;
+        }
+
+            .btnAddDSYT .btn-dsyt:hover {
+                background-color: #ff5b6a;
+                border-color: #ff5b6a;
+            }
+</style>
+<div class="bg-light py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mb-0">
+                <a href="/KhachHang/TrangChu">Trang chủ</a>
+                <span class="mx-2 mb-0">/</span><a href="/KhachHang/DSThucDon">Danh sách món ăn</a><span class="mx-2 mb-0">/</span>
+                <strong class="text-black">@Model.TenMA</strong>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="book_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Thông tin món ăn
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_container">
+                    <div class="img-box text-center">
+                        <img src="@Model.HinhAnh" width="450" height="400" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="detail-box">
+                    <div class="heading_container">
+                        <h1>
+                            @Model.TenMA
+                        </h1>
+                        <h2>Giá tiền: @string.Format(new System.Globalization.CultureInfo("vi-VN"), "{0:C}", Model.GiaGoc).Replace(",00", "")</h2>
+                    </div>
+                    <hr />
+                    <div class="text-body mb-5">
+                        <h1>Mô tả: </h1>
+                        <h2>@Model.MoTa</h2>
+                    </div>
+                    <div class="qty">
+                        <span class="lbl">Quantity</span>
+                        <div class="q-inner ">
+                            <button class="btn-minute" type="button" disabled="">-</button>
+                            <span class="number">1</span>
+                            <button class="btn-plus" type="button">+</button>
+                        </div>
+
+                    </div>
+                    <div class="txt-note">
+                        Bạn tiết kiệm được
+                        <strong>62.000 ₫</strong> sau khi giảm giá.
+                    </div>
+                </div>
+                <div>
+                    <div class="btnAddCart">
+                        <button title="Thêm món ăn vào giỏ hàng" class="btn btn-primary btn-cart">Thêm món ăn vào giỏ hàng</button>
+                    </div>
+                    <div class="btnAddDSYT">
+                        <button class="btn btn-primary btn-dsyt" id="addDSYT">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <style>
+                </style>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section script{
+    <script>
+        $(document).ready(function () {
+
+            var monAnId = '@Model.ID';
+            var soLuong = 1;
+            var MaKH = "@(userKH != null ? userKH.MaKH : string.Empty)";
+            if (MaKH == '') {
+                $('#addDSYT').click(function () {
+                    window.location.href = '/KhachHang/LRAccount';
+                });
+            }
+
+            $('.btn-plus').click(function () {
+                $('.btn-minute').prop('disabled', false);
+                soLuong++;
+                $('.number').text(soLuong);
+            });
+
+            $('.btn-minute').click(function () {
+                if (soLuong <= 1) {
+                    soLuong = 1;
+                    $(this).attr('disabled', 'disabled');
+                }
+                else {
+                    soLuong--;
+                    $('.number').text(soLuong);
+                }
+            });
+            $('.btn-cart').click(function () {
+                $.ajax({
+                    url: '/KhachHang/ThemVaoGH',
+                    data: { id: monAnId, sl: soLuong },
+                    success: function (response) {
+                        $('#cartItemCount').text(response.sl);
+                    },
+                    error: function (error) {
+                        //Xử lý lỗi
+                        console.log('Lỗi khi thêm vào giỏ hàng');
+                    }
+                });
+            });
+
+            $('.btn-dsyt').click(function () {
+                // Lấy tham số cần thiết
+                var button = $(this).find('.btn-dsyt');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/KhachHang/ThemDSYT',
+                    data: { id: monAnId, user: MaKH },
+                    success: function (response) {
+                        if (response.success == true) {
+                            swal({
+                                title: "Thêm vào danh sách yêu thích",
+                                text: "Đã thêm món ăn vào danh sách yêu thích của bạn",
+                                icon: "success",
+                                button: "OK",
+                            }).then(function () {
+                                // Thực hiện các hành động sau khi người dùng nhấn nút "OK"
+                                location.reload(); // Reload lại dữ liệu
+                            });
+                        } else {
+                            // Handle the case when response.success is not true
+                            console.log('Failed to add to favorites.');
+                        }
+                    },
+                    error: function (error) {
+                        // Xử lý lỗi
+                        console.log('Lỗi khi thêm vào danh sách yêu thích');
+                    }
+                });
+            });
+
+        });
+    </script>
+}
