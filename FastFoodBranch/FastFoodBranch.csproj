@@ -168,10 +168,14 @@
     <Compile Include="Controllers\LoginUserController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\TuChoiTruyCapController.cs" />
+    <Compile Include="Controllers\VNPayConstaints.cs" />
     <Compile Include="Entities\AllBranch.cs" />
     <Compile Include="Entities\Branch.cs" />
     <Compile Include="Entities\BranchConstaint.cs" />
     <Compile Include="Entities\IBranch.cs" />
+    <Compile Include="Entities\IPaymentStrategy.cs" />
+    <Compile Include="Entities\VNPAYPaymentStrategy.cs" />
+    <Compile Include="Entities\ZaloPayPaymentStrategy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

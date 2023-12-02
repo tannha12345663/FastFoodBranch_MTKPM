@@ -548,7 +548,7 @@ namespace FastFoodBranch.Controllers
                 //db.SaveChanges();
                 if(LoaiTT == "1")
                 {
-                    return RedirectToAction("Payment01", "Payment");
+                    return RedirectToAction("VNPay", "Payment");
                 }
                 else if(LoaiTT == "2")
                 {
