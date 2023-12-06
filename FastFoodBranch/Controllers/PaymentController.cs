@@ -1,11 +1,6 @@
 ﻿using FastFoodBranch.Entities;
 using FastFoodBranch.Models;
-using FastFoodBranch.Models.VNPay;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace FastFoodBranch.Controllers
@@ -21,8 +16,6 @@ namespace FastFoodBranch.Controllers
             Cart cart = Session["Cart"] as Cart;
             var mahd = "HD" + rd.Next(1, 100) + rd.Next(1, 100);
             Session["madonhang"] = mahd;
-
-
 
             string paymentUrl = _paymentStrategy.GeneratePaymentUrl(cart, mahd);
             return Redirect(paymentUrl);

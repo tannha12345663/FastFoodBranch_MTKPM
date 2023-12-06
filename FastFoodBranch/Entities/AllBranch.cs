@@ -7,7 +7,6 @@ namespace FastFoodBranch.Entities
     public class AllBranch : IBranch
     {
         public List<Branch> _branches;
-
         public void AutoAddBranch(List<ChiNhanh> list)
         {
            _branches = new List<Branch>();
@@ -17,7 +16,6 @@ namespace FastFoodBranch.Entities
                 branch.fatoryFromChiNhanh(ch);
                 _branches.Add(branch);
             }
-
         }
         public List<HoaDon> getListIncome(int year,string option)
         {
@@ -41,8 +39,7 @@ namespace FastFoodBranch.Entities
                         return selectedBranch.getListIncome(year);
                     }
                 }
-                return new List<HoaDon>();
-                
+                return new List<HoaDon>();               
             }
 
         }
