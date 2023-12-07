@@ -6,15 +6,17 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using FastFoodBranch;
 using FastFoodBranch.App_Start;
 using FastFoodBranch.Models;
+using FastFoodBranch.Entities;
 using static FastFoodBranch.Controllers.AdminController;
 
 namespace FastFoodBranch.Controllers
 {
     public class KhachHangController : Controller
     {
-        QuanLyFastFoodEntities1 db = new QuanLyFastFoodEntities1();
+        QuanLyFastFoodEntities1 db = ConnectSingleton.GetInstance();
         
         // GET: KhachHang
         public ActionResult TrangChu()
@@ -546,7 +548,7 @@ namespace FastFoodBranch.Controllers
                 //db.SaveChanges();
                 if(LoaiTT == "1")
                 {
-                    return RedirectToAction("Payment01", "Payment");
+                    return RedirectToAction("VNPay", "Payment");
                 }
                 else if(LoaiTT == "2")
                 {

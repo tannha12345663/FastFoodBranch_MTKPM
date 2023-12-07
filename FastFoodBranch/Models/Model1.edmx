@@ -1140,7 +1140,7 @@
           <Property Name="Lock" Type="Boolean" />
           <NavigationProperty Name="MonAn" Relationship="Self.FK_BienDongGia_MonAn" FromRole="BienDongGia" ToRole="MonAn" />
         </EntityType>
-        <EntityType Name="ChiNhanh">
+        <EntityType Name="ChiNhanh" Abstract="false">
           <Key>
             <PropertyRef Name="LocationID" />
           </Key>
