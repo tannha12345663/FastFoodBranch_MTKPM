@@ -6,10 +6,10 @@ namespace FastFoodBranch.Entities
 {
     public class AllBranch : IBranch
     {
-        public List<Branch> _branches;
+        public List<IBranch> _branches;
         public void AutoAddBranch(List<ChiNhanh> list)
         {
-           _branches = new List<Branch>();
+           _branches = new List<IBranch>();
            foreach (ChiNhanh ch in list)
             {
                 Branch branch = new Branch();

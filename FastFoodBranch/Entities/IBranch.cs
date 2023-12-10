@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FastFoodBranch.Entities
 {
-    internal interface IBranch
+    public interface IBranch
     {
         List<HoaDon> getListIncome(int year,string option="");
     }
